@@ -5,12 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/static/css/style.css">
 <title>PictoTale - {{ filename }}</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#settings-button').on('click', function(){
+            $('#settings-popup').show();
+        });
+
+        $('.settings-popup-menu li').on('click', function(){
+            let selectedTheme = $(this).text();
+            $('#settings-popup').hide();
+            // Here you can add code to apply the selected theme
+            window.location.href='/viewer/{{ filename }}?pos={{ nextpos-1 }}&theme=' + selectedTheme;
+        });
+    });
+</script>
 </head>
 <body>
 <div class="container">
     <div class="header">
         <h1>PictoTale - {{ filename }}</h1>
-        <button class="settings-button">...</button>
+        <button class="settings-button" id="settings-button">...</button>
     </div>
     
     <div class="viewer-container">
@@ -25,6 +40,23 @@
         <button class="next-button" onclick="window.location.href='/viewer/{{ filename }}?pos={{ nextpos }}'">Next</button>
         <button class="home-button" onclick="window.location.href='/'">Home</button>
     </div>
+
+    <div class="settings-popup" id="settings-popup">
+        <ul class="settings-popup-menu">
+            <li></li>
+            <li>Steampunk</li>
+            <li>Cyberpunk</li>
+            <li>Photorealistic</li>
+            <li>Film Noir</li>
+            <li>Fantasy</li>
+            <li>Horror</li>
+            <li>Mystery</li>
+            <li>Romance</li>
+            <li>Sci-fi</li>
+            <li>Western</li>
+            <li>Comic</li>
+        </ul>
+    </div>    
 </div>
 </body>
 </html>

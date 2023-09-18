@@ -14,6 +14,7 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = os.environ.get('UPLOAD_FOLDER', 'uploads')
 app.config['CACHE_FOLDER'] = os.environ.get('CACHE_FOLDER', 'cache')
 app.config['STABLE_DIFFUSION_URL'] = os.environ.get('STABLE_DIFFUSION_URL', 'http://localhost:7860')
+app.config['THEME'] = ''
 
 
 # Rules to connect the views

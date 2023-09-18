@@ -16,6 +16,12 @@ class ViewerView(MethodView):
 
     def get(self, filename):
         pos = request.args.get('pos', default=0, type=int)
+        theme = request.args.get('theme', default='', type=str)
+        if theme != '':
+            self.app.config['THEME'] = theme
+        else:
+            theme = self.app.config['THEME']
+        #print(theme)
 
         ## fetch the file
         filepath = os.path.join(self.app.config['UPLOAD_FOLDER'], filename + ".txt")
@@ -42,7 +48,7 @@ class ViewerView(MethodView):
 
         ## generate the picture
         payload = {
-            "prompt": "A steampunk image of: " + content,
+            "prompt": "A {{theme}} image of: " + content,
             "steps": 5
         }
         url = self.app.config['STABLE_DIFFUSION_URL']
