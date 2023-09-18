@@ -13,16 +13,15 @@
     </div>
     
     <div class="viewer-container">
-        <img src="/static/images/your_image.png" alt="PictoTale Image">
-    </div>
-
-    <div class="description">
-        <p>Image description goes here.</p>
+        <img src="/{{ thumbnail }}" alt="{{ filename }}" class="viewer-thumbnail">
+        <div class="viewer-description">
+            <p>{{ content }}</p>
+        </div>
     </div>
     
     <div class="navigation">
-        <button class="prev-button">Prev</button>
-        <button class="next-button">Next</button>
+        <button class="prev-button" onclick="window.location.href='/viewer/{{ filename }}?pos={{ prevpos }}'">Prev</button>
+        <button class="next-button" onclick="window.location.href='/viewer/{{ filename }}?pos={{ nextpos }}'">Next</button>
         <button class="home-button" onclick="window.location.href='/'">Home</button>
     </div>
 </div>

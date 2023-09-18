@@ -32,6 +32,15 @@ Add a gallery page which should contain an 3x3 item view in the top center build
 Modify app.py to add a route to read-only access the files of the uploads directory directly.
 ```
 
+4. Generate the viewer page
+```
+dd to the viewer page a second parameter named "pos" which is optional and defaults to 0.
+The backend of the viewer page should open the text file defined in the "filename" parameter and store it into a string variable.
+When pos=0 then all characters of the string variable are skipped, until a number is showing up on the beginning of a line or sentence. The line containing that number should also be skipped.
+Then keep all characters until a new paragraph - indicated with an empty line gap - shows up. The rest of the lines are skipped, too.
+The resulting text should be shown in the viewer page in a description section below the picture.
+```
+
 ## PDF-Conversion
 
 ### Tale/Novel Preparations
@@ -53,3 +62,11 @@ pip install PyPDF2
 pip install pdfminer
 ```
 
+## Stable-Diffusion Agent
+
+Python program for integrating Stable Diffusion, which runs as a separate application instance.
+
+```
+pip install requests
+pip install pillow
+```
