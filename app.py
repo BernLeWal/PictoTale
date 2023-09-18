@@ -1,6 +1,7 @@
 #!/bin/py
 import os
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory
+import secrets
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory, session
 from dotenv import load_dotenv
 from views.home_view import HomeView
 from views.upload_view import UploadView
@@ -14,7 +15,7 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = os.environ.get('UPLOAD_FOLDER', 'uploads')
 app.config['CACHE_FOLDER'] = os.environ.get('CACHE_FOLDER', 'cache')
 app.config['STABLE_DIFFUSION_URL'] = os.environ.get('STABLE_DIFFUSION_URL', 'http://localhost:7860')
-app.config['THEME'] = ''
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', secrets.token_hex(16)) 
 
 
 # Rules to connect the views

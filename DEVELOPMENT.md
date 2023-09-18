@@ -85,6 +85,11 @@ Correct the upload_view.py program to get the app object.
 Please remember the settings button in the index.html file. Modify the sources so that a popup-window with shows up when the settings button is clicked. The following menu items should be presented: Default, Steampunk, Cyberpunk, Photorealistic, Film Noir.
 ```
 
+2. Store the selected theme in the session
+```
+Tell me how to store values in the session.
+```
+
 ## PDF-Conversion
 
 ### Tale/Novel Preparations
