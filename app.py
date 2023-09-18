@@ -1,6 +1,7 @@
 #!/bin/py
 import os
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
+from dotenv import load_dotenv
 import pdfparser
 import re
 import requests
@@ -9,9 +10,9 @@ import base64
 from PIL import Image, PngImagePlugin
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'uploads'
-app.config['CACHE_FOLDER'] = 'cache'
-app.config['STABLE_DIFFUSION_URL'] = "http://clu.wallisch-it.net:7860"
+app.config['UPLOAD_FOLDER'] = os.environ.get('UPLOAD_FOLDER', 'uploads')
+app.config['CACHE_FOLDER'] = os.environ.get('CACHE_FOLDER', 'cache')
+app.config['STABLE_DIFFUSION_URL'] = os.environ.get('STABLE_DIFFUSION_URL', 'http://localhost:7860')
 
 
 @app.route('/')
@@ -109,4 +110,6 @@ def cache_file(filename):
 if __name__ == "__main__":
     if not os.path.exists('uploads'):
         os.makedirs('uploads')
+    if not os.path.exists('cache'):
+        os.makedirs('cache')
     app.run(debug=True)

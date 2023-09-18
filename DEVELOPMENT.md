@@ -1,6 +1,12 @@
 # PictoTale
 Development Steps
 
+As a start also the application name was generated.
+```
+ChatGPT4 Prompt: 
+Give me five suggestions for a title/name of the following app: The application will create a interactive picture book of a provided text novel, and will read it to the user.
+```
+
 ## Web-Application
 
 ### Pre-Requisites: Install FLask WebServer
@@ -8,6 +14,7 @@ Development Steps
 pip install flask
 ```
 
+### Rapid generation of the prototype
 Here follows the ChatGPT4 prompts:
 
 
@@ -34,12 +41,25 @@ Modify app.py to add a route to read-only access the files of the uploads direct
 
 4. Generate the viewer page
 ```
-dd to the viewer page a second parameter named "pos" which is optional and defaults to 0.
+Add to the viewer page a second parameter named "pos" which is optional and defaults to 0.
 The backend of the viewer page should open the text file defined in the "filename" parameter and store it into a string variable.
 When pos=0 then all characters of the string variable are skipped, until a number is showing up on the beginning of a line or sentence. The line containing that number should also be skipped.
 Then keep all characters until a new paragraph - indicated with an empty line gap - shows up. The rest of the lines are skipped, too.
 The resulting text should be shown in the viewer page in a description section below the picture.
 ```
+
+5. Integrate Stable Diffusion
+However, generative AI was of no help here:
+- ChatGPT just provided generic HTTP request generation - without considering the stable diffusion API at all
+- BingChat wrongly redirects to the stable diffusion clone/install instructions - did not correctly understand the question
+
+At the end the stable diffusion webui just provides a direct link to the API with the sample-code used here.
+
+6. Use configuration from environment variables
+```
+Change the app.py file in the way that the application configuration is provided in environmental variables or .env file instead of being hardcoded.
+```
+
 
 ## PDF-Conversion
 
@@ -70,3 +90,4 @@ Python program for integrating Stable Diffusion, which runs as a separate applic
 pip install requests
 pip install pillow
 ```
+

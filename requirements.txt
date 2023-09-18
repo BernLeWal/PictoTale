@@ -12,6 +12,7 @@ pdfminer==20191125
 Pillow==10.0.1
 pycryptodome==3.19.0
 PyPDF2==3.0.1
+python-dotenv==1.0.0
 requests==2.31.0
 urllib3==2.0.4
 Werkzeug==2.3.7
