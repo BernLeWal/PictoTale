@@ -18,7 +18,7 @@ class ViewerView(MethodView):
         pos = request.args.get('pos', default=0, type=int)
 
         ## fetch the file
-        filepath = os.path.join(self.app.config['UPLOAD_FOLDER'], filename)
+        filepath = os.path.join(self.app.config['UPLOAD_FOLDER'], filename + ".txt")
         if not os.path.isfile(filepath):
             return "File not found", 404
 

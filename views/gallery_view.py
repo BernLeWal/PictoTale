@@ -11,7 +11,7 @@ class GalleryView(MethodView):
         files = [f for f in os.listdir(self.app.config['UPLOAD_FOLDER']) if f.endswith('.txt')]
         file_details = [
             {
-                "filename": f,
+                "filename": f.replace('.txt', ''),
                 "thumbnail": (os.path.join(self.app.config['UPLOAD_FOLDER'], f.replace('.txt', '.jpg'))) if os.path.exists(os.path.join(self.app.config['UPLOAD_FOLDER'], f.replace('.txt', '.jpg'))) else '/static/images/ebook.png'
             }
             for f in files

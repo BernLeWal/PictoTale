@@ -10,6 +10,7 @@
 <div class="container">
     <div class="header">
         <h1>PictoTale - {{ filename }}</h1>
+        <button class="settings-button">...</button>
     </div>
     
     <div class="viewer-container">
@@ -20,7 +21,7 @@
     </div>
     
     <div class="navigation">
-        <button class="prev-button" onclick="window.location.href='/viewer/{{ filename }}?pos={{ prevpos }}'">Prev</button>
+        <button class="prev-button" onclick="window.location.href='/viewer/{{ filename }}'">Start</button>
         <button class="next-button" onclick="window.location.href='/viewer/{{ filename }}?pos={{ nextpos }}'">Next</button>
         <button class="home-button" onclick="window.location.href='/'">Home</button>
     </div>
