@@ -5,6 +5,7 @@ BING-Chat Prompt:
 python convert pdf to string
 
 --> followed the reference to Stackoverflow
+https://stackoverflow.com/questions/25665/python-module-for-converting-pdf-to-text
 '''
 # --> this solution works better than the PyPDF2 solution
 
