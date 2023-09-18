@@ -1,7 +1,7 @@
 from flask.views import MethodView
 from flask import render_template, request, redirect, url_for
 import os
-import pdfparser
+import services.pdf_parser_service as pdf_parser_service
 
 
 class UploadView(MethodView):
@@ -20,7 +20,7 @@ class UploadView(MethodView):
             file.save(filepath)
 
             # convert to plain-text
-            text = pdfparser.pdfparser(filepath)
+            text = pdf_parser_service.pdfparser(filepath)
             filepath = filepath.replace('.pdf', '.txt')
             with open(filepath, 'w', encoding='utf-8') as f:
                 f.write(text)

@@ -78,6 +78,12 @@ Correct the upload_view.py program to get the app object.
 
 ==> Solution was to manually fix this issue by generating ctor with the corresponding parameter :-)
 
+### Add further proto features
+
+1. Switch picture generation between different themes
+```
+Please remember the settings button in the index.html file. Modify the sources so that a popup-window with shows up when the settings button is clicked. The following menu items should be presented: Default, Steampunk, Cyberpunk, Photorealistic, Film Noir.
+```
 
 ## PDF-Conversion
 
