@@ -32,7 +32,7 @@ def pdfparser(data):
         interpreter.process_page(page)
         data =  retstr.getvalue()
 
-    print(data)
+    return data
 
 if __name__ == '__main__':
     pdfparser("tales/Machine_stops.pdf")  

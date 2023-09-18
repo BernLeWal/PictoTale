@@ -15,22 +15,10 @@ Install the required packages
 ```
 pip install -r requirements.txt
 ```
+See the contents of [requirements.txt](requirements.txt) to check out which libraries are needed
 
-
-* To Convert PDF-files to plain-text
+## Run the application
 ```
-pip install PyPDF2
-pip install pdfminer
+python app.py
 ```
-
-## Tale/Novel Preparations
-The application will generate an interacive picture-book of the text provided by tale/Novel text files. 
-
-For the application to be able to read the content (only) and distinguish between chapters, paragraphs and sentences you need to do the following preparation steps:
-1. Convert PDF, EPUB,... to a plain-text file. Take out all headers, footers, footnotes etc. which do not belong to the story
-2. Generate a text-file structure as follows:
-
-  * Every single sentence (in the original text may stop with ".") ends with CR/LF
-  * Paragraphs are separated via NewLine
-  * Chapters start with a sentence which starts itself with a number
 

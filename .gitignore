@@ -1,1 +1,3 @@
-tales/*.pdf
+__pycache__/
+uploads/
+experiments/tales/

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/css/style.css">
+<title>PictoTale - Upload ebook</title>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>PictoTale</h1>
+        <button class="home-button" onclick="window.location.href='/'">Home</button>
+    </div>
+    
+    <div class="upload-container">
+        <p class="intro-text">Upload your ebook and add it to the PictoTale gallery</p>
+        
+        <form action="/upload" method="POST" enctype="multipart/form-data" class="upload-form">
+            <div class="drop-zone">
+                <input type="file" name="file" class="file-input">
+            </div>
+            
+            <div class="upload-buttons">
+                <button type="submit" class="upload-button">Upload</button>
+                <button type="button" class="cancel-button" onclick="window.location.href='/'">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
