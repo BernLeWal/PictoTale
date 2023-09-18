@@ -60,6 +60,24 @@ At the end the stable diffusion webui just provides a direct link to the API wit
 Change the app.py file in the way that the application configuration is provided in environmental variables or .env file instead of being hardcoded.
 ```
 
+### Refactorings
+
+1. Move view-backend in separate classes into the views module
+```
+Please refactor app.py so that the implementations of the endpoints will be moved to separate classes in the views subdirectory.
+```
+
+ATTENTION: the generated code / refactoring hints won't compile, because app is not passed to the view classes!
+
+2. Get app variable into the view classes
+```
+Correct the upload_view.py program to get the app object.
+```
+
+--> Unfortunately ChatGPT4 was completely lost, and did not get the question right.
+
+==> Solution was to manually fix this issue by generating ctor with the corresponding parameter :-)
+
 
 ## PDF-Conversion
 
