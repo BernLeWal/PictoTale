@@ -21,6 +21,8 @@ class ViewerView(MethodView):
         else:
             if 'THEME' in session:
                 theme = session['THEME']
+        if theme == 'Default':
+            theme = ''
 
         ## fetch the file
         filepath = os.path.join(self.app.config['UPLOAD_FOLDER'], filename + ".txt")
@@ -62,7 +64,7 @@ class ViewerView(MethodView):
 
             # generate the picture
             print( f'Description: {descriptions}\n' )
-            picturegenerator(self.app.config['STABLE_DIFFUSION_URL'], f"A {theme} image of: " + descriptions, os.path.join(self.app.config['CACHE_FOLDER'], f'{filename}-{pos}.png'))
+            picturegenerator(self.app.config['STABLE_DIFFUSION_URL'], f"A ({theme}:{self.app.config['THEME_EMPHATIZE_RELATIVE']}) image of: " + descriptions, os.path.join(self.app.config['CACHE_FOLDER'], f'{filename}-{pos}.png'))
             thumbnail = os.path.join(self.app.config['CACHE_FOLDER'], f'{filename}-{pos}.png')
 
             # generate the speeches

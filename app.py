@@ -1,6 +1,7 @@
 #!/bin/py
 import os
 import secrets
+import shutil
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory, session
 from dotenv import load_dotenv
 from views.home_view import HomeView
@@ -16,6 +17,7 @@ app.config['UPLOAD_FOLDER'] = os.environ.get('UPLOAD_FOLDER', 'uploads')
 app.config['CACHE_FOLDER'] = os.environ.get('CACHE_FOLDER', 'cache')
 app.config['STABLE_DIFFUSION_URL'] = os.environ.get('STABLE_DIFFUSION_URL', 'http://localhost:7860')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', secrets.token_hex(16)) 
+app.config['THEME_EMPHATIZE_RELATIVE'] = os.environ.get('THEME_EMPHATIZE_RELATIVE', 1.2)
 
 
 # Rules to connect the views
@@ -40,6 +42,7 @@ def cache_file(filename):
 if __name__ == "__main__":
     if not os.path.exists('uploads'):
         os.makedirs('uploads')
+    shutil.rmtree('cache')
     if not os.path.exists('cache'):
         os.makedirs('cache')
     app.run(debug=True)

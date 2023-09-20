@@ -129,6 +129,11 @@ Tried it with BING-Chat instead:
 
 ==> Reading the gTTS reference documentation will be required here!
 
+7. Picture generation optimization: emphatise the theme
+asked BING-Chat:
+```
+Tell me how I can use the promt to stable diffusion to enforce specific words.
+```
 
 ## PDF-Conversion
 
