@@ -30,21 +30,32 @@ class ViewerView(MethodView):
 
         ## fetch the content, which is then used as prompt for the stable diffusion API
         paragraphs = re.split(r'\n\s*\n', content)
+
+        nextpos = pos
+        content = ""
         if pos == 0:
+            # Show the title page
             for i, paragraph in enumerate(paragraphs):
                 if re.match(r'^\d.*$', paragraph.split('\n')[0]):
-                    pos = i+1 if i+1 < len(paragraphs) else i
-                    content = paragraphs[pos]
+                    nextpos = i+1 if i+1 < len(paragraphs) else i
                     break
+
+            for i in range(nextpos-1):
+                content += paragraphs[i] + '\n'
+
+            thumbnail = os.path.join(self.app.config['UPLOAD_FOLDER'], f'{filename}.png')
+
         else:
+            # Show the book pages and generate the pictures
             content = paragraphs[pos if pos < len(paragraphs) else 0]
 
-        while not content.endswith('.'):
-            pos += 1
-            content += paragraphs[pos if pos < len(paragraphs) else 0]
+            while not content.endswith('.'):
+                nextpos += 1
+                content += paragraphs[nextpos if nextpos < len(paragraphs) else 0]
+            nextpos += 1 if nextpos < len(paragraphs) else 0
 
-        ## generate the picture
-        picturegenerator(self.app.config['STABLE_DIFFUSION_URL'], f"A {theme} image of: " + content, os.path.join(self.app.config['CACHE_FOLDER'], f'{filename}-{pos}.png'))
-        thumbnail = os.path.join(self.app.config['CACHE_FOLDER'], f'{filename}-{pos}.png')
+            ## generate the picture
+            picturegenerator(self.app.config['STABLE_DIFFUSION_URL'], f"A {theme} image of: " + content, os.path.join(self.app.config['CACHE_FOLDER'], f'{filename}-{pos}.png'))
+            thumbnail = os.path.join(self.app.config['CACHE_FOLDER'], f'{filename}-{pos}.png')
 
-        return render_template('viewer.html', filename=filename, content=content, thumbnail=thumbnail, nextpos=pos+1, prevpos=pos-1, theme=theme)
+        return render_template('viewer.html', filename=filename, content=content, thumbnail=thumbnail, nextpos=nextpos, prevpos=pos-1, theme=theme)
