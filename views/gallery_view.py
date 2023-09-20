@@ -12,7 +12,7 @@ class GalleryView(MethodView):
         file_details = [
             {
                 "filename": f.replace('.txt', ''),
-                "thumbnail": (os.path.join(self.app.config['UPLOAD_FOLDER'], f.replace('.txt', '.jpg'))) if os.path.exists(os.path.join(self.app.config['UPLOAD_FOLDER'], f.replace('.txt', '.jpg'))) else '/static/images/ebook.png'
+                "thumbnail": (os.path.join(self.app.config['UPLOAD_FOLDER'], f.replace('.txt', '.png'))) if os.path.exists(os.path.join(self.app.config['UPLOAD_FOLDER'], f.replace('.txt', '.png'))) else '/static/images/ebook.png'
             }
             for f in files
         ]

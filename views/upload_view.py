@@ -2,7 +2,7 @@ from flask.views import MethodView
 from flask import render_template, request, redirect, url_for
 import os
 import services.pdf_parser_service as pdf_parser_service
-
+import services.pdf2image_service as pdf2image_service
 
 class UploadView(MethodView):
     def __init__(self, app) -> None:
@@ -21,9 +21,13 @@ class UploadView(MethodView):
 
             # convert to plain-text
             text = pdf_parser_service.pdfparser(filepath)
-            filepath = filepath.replace('.pdf', '.txt')
-            with open(filepath, 'w', encoding='utf-8') as f:
+            txtfilepath = filepath.replace('.pdf', '.txt')
+            with open(txtfilepath, 'w', encoding='utf-8') as f:
                 f.write(text)
+
+            # generate thumbnail image for the file
+            pngfilepath = filepath.replace('.pdf', '.png')
+            pdf2image_service.pdf2image(filepath, pngfilepath)
 
             return redirect(url_for('gallery'))
 

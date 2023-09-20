@@ -90,6 +90,17 @@ Please remember the settings button in the index.html file. Modify the sources s
 Tell me how to store values in the session.
 ```
 
+3. Create an image of the first page in the pdf-file
+```
+Please create python code using the PDFMiner library, which will read the first page of the input pdf file and store it as a image to be later used as a thumbnail in the gallery page.
+```
+--> Created a solution using the pdf2image library, which requires poppler installed on the OS, so we need to find a different library
+
+```
+please use a different framework than pdf2image to extract the first page as an image.
+```
+
+
 ## PDF-Conversion
 
 ### Tale/Novel Preparations
@@ -104,11 +115,16 @@ For the application to be able to read the content (only) and distinguish betwee
   * Chapters start with a sentence which starts itself with a number
 
 
-
 * To Convert PDF-files to plain-text
 ```
 pip install PyPDF2
 pip install pdfminer
+pip install pdfminer.six
+```
+
+* To Convert the first page of the PDF-file to an image
+```
+pip install pymupdf
 ```
 
 ## Stable-Diffusion Agent

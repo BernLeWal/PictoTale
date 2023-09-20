@@ -35,4 +35,4 @@ def pdfparser(data):
     return data
 
 if __name__ == '__main__':
-    pdfparser("tales/Machine_stops.pdf")  
+    print(pdfparser("experiments/Machine_stops.pdf"))
