@@ -34,6 +34,19 @@
             <p>{{ content }}</p>
         </div>
     </div>
+
+    <audio controls id="audioPlayer" autoplay unmuted>
+        <source id="audioSource" src="/{{ speechfile }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <script>
+        if(document.getElementById('audioSource').src.endsWith(".mp3")) {
+            document.getElementById('audioPlayer').play();
+        } else {
+            document.getElementById('audioPlayer').style.display = 'none';
+        }
+    </script> 
     
     <div class="navigation">
         <button class="prev-button" onclick="window.location.href='/viewer/{{ filename }}'">Start</button>
@@ -57,6 +70,7 @@
             <li>Comic</li>
         </ul>
     </div>    
+
 </div>
 </body>
 </html>

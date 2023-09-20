@@ -2,8 +2,9 @@ from flask.views import MethodView
 from flask import render_template, request, session
 import os
 import re
-import re
 from services.picture_generator_service import picturegenerator
+from services.sentences_extractor_service import extract_sentences
+from services.tts_service import create_audio
 
 
 class ViewerView(MethodView):
@@ -33,6 +34,7 @@ class ViewerView(MethodView):
 
         nextpos = pos
         content = ""
+        speechfile = ""
         if pos == 0:
             # Show the title page
             for i, paragraph in enumerate(paragraphs):
@@ -54,8 +56,24 @@ class ViewerView(MethodView):
                 content += paragraphs[nextpos if nextpos < len(paragraphs) else 0]
             nextpos += 1 if nextpos < len(paragraphs) else 0
 
-            ## generate the picture
-            picturegenerator(self.app.config['STABLE_DIFFUSION_URL'], f"A {theme} image of: " + content, os.path.join(self.app.config['CACHE_FOLDER'], f'{filename}-{pos}.png'))
+            content = content.replace('\n',' ').replace('\r',' ').replace('“', '"').replace('”', '"') #.replace('’', "'").replace('‘', "'" )
+            print( f'Content: {content}\n' )
+            sentences, descriptions = extract_sentences(content)
+
+            # generate the picture
+            print( f'Description: {descriptions}\n' )
+            picturegenerator(self.app.config['STABLE_DIFFUSION_URL'], f"A {theme} image of: " + descriptions, os.path.join(self.app.config['CACHE_FOLDER'], f'{filename}-{pos}.png'))
             thumbnail = os.path.join(self.app.config['CACHE_FOLDER'], f'{filename}-{pos}.png')
 
-        return render_template('viewer.html', filename=filename, content=content, thumbnail=thumbnail, nextpos=nextpos, prevpos=pos-1, theme=theme)
+            # generate the speeches
+            speak = ""
+            for i, sentence in enumerate(sentences):
+                speak += f'{sentence} \n'
+            print( f'Speech: {speak}\n')
+
+            if speak != "":
+                speechfile = os.path.join(self.app.config['CACHE_FOLDER'], f'{filename}-{pos}.mp3')
+                create_audio(speak, speechfile)
+
+
+        return render_template('viewer.html', filename=filename, content=content, thumbnail=thumbnail, speechfile=speechfile, nextpos=nextpos, prevpos=pos-1, theme=theme)

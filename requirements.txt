@@ -6,6 +6,7 @@ click==8.1.7
 colorama==0.4.6
 cryptography==41.0.4
 Flask==2.3.3
+gTTS==2.3.2
 idna==3.4
 itsdangerous==2.1.2
 Jinja2==3.1.2

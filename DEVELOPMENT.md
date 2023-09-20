@@ -100,6 +100,35 @@ Please create python code using the PDFMiner library, which will read the first 
 please use a different framework than pdf2image to extract the first page as an image.
 ```
 
+4. Extract the description (for picture generation) and speeches (for TTS) from the content
+```
+Write a python script which will from a given string extract all sentences within double-quotes to a variable called speeches and the rest to a variable called descriptions.
+```
+
+5. Introduce a TTS-engine to the application
+```
+Write a python code which will use a text-to-speech engine to create an audio from a string and will play this in the viewer.html.
+```
+
+```
+Please adapt the html file to hide the audio control when no mp3 file is given.
+```
+
+```
+Tell me how to autoplay the audiosource in the html file.
+```
+
+6. Try to optimize the output of the TTS
+```
+I want to add some pauses in the audio result of the gtts engine. Which characters do I have to add to the input string to do so?
+```
+--> The suggestions did not work, unfortunately ChatGPT does not know the gTTS good enough ;-)
+
+Tried it with BING-Chat instead:
+--> Returned even more suggestions (also mentioned the SSML input format), but all these still don't work
+
+==> Reading the gTTS reference documentation will be required here!
+
 
 ## PDF-Conversion
 
