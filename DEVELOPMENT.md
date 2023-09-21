@@ -135,6 +135,30 @@ asked BING-Chat:
 Tell me how I can use the promt to stable diffusion to enforce specific words.
 ```
 
+### Apply a nice CSS-template: BuzzApp
+used (https://www.free-css.com)[https://www.free-css.com] with search parameters: HTML5, responsive, 1 Column
+
+Result was BuzzApp: https://www.free-css.com/free-css-templates/page161/buzzapp
+
+1. Apply CSS-template to the application
+```
+Please help me with applying a predefined CSS-template to the application.
+I have the following CSS file which uses bootstrap:
+<pasted the styles.css file>
+
+And a HTML file showing how the assents of this template is used:
+<pasted the index.html file>
+```
+--> Suggestions from ChatGPT4 are very generic, just a checklist.
+Nothing what support me for coding.
+--> everything has to be done by hand (as before). ChatGPT4 was no help at all!
+
+2. Manually applied BuzzApp in the index-page
+
+ATTENTION: No help from ChatGPT!
+--> It turned out, that this minimalistic CSS-template does not fit to well to the application and I would have to change the CSS files by myself to get an intermediate result. That's not what I wanted.
+
+
 ## PDF-Conversion
 
 ### Tale/Novel Preparations
