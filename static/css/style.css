@@ -1,13 +1,38 @@
-body {
-    font-family: 'Arial, sans-serif';
+/* Reset some default browser styling */
+* {
     margin: 0;
-    background-color: #f0f0f0;
-}
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  body {
+    background-color: #f4f4f4;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+  }
 
 .container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+header, footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header a, footer a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0 10px;
 }
 
 .header {
@@ -24,6 +49,50 @@ body {
     margin: 0;
 }
 
+main {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  @media screen and (max-width: 768px) {
+    body {
+      font-size: 14px;
+    }
+    
+    .container {
+      padding: 0 10px;
+    }
+  
+    header, footer {
+      padding: 10px 0;
+    }
+  }
+  
+/* Add some simple hover effects for links */
+header a:hover, footer a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Enhance button appearance */
+  button, .btn {
+    display: inline-block;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover, .btn:hover {
+    background-color: #555;
+  }
+  
+
+/* Designs of the controls: */
 .settings-button {
     padding: 10px 20px;
     font-size: 16px;
@@ -57,7 +126,7 @@ body {
 
 
 .image-container {
-    width: 60%;
+    width: 80%;
     margin: 20px 0;
     background-color: #fff;
     padding: 20px;
@@ -70,7 +139,7 @@ body {
 }
 
 .description {
-    width: 60%;
+    width: 80%;
     background-color: #fff;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
