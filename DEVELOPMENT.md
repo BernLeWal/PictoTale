@@ -135,7 +135,7 @@ asked BING-Chat:
 Tell me how I can use the promt to stable diffusion to enforce specific words.
 ```
 
-### Apply a nice CSS-template: BuzzApp
+### Trial 1: Apply a nice CSS-template: BuzzApp
 used (https://www.free-css.com)[https://www.free-css.com] with search parameters: HTML5, responsive, 1 Column
 
 Result was BuzzApp: https://www.free-css.com/free-css-templates/page161/buzzapp
@@ -158,6 +158,15 @@ Nothing what support me for coding.
 ATTENTION: No help from ChatGPT!
 --> It turned out, that this minimalistic CSS-template does not fit to well to the application and I would have to change the CSS files by myself to get an intermediate result. That's not what I wanted.
 
+
+### Trial 2: Improve the CSS-template
+
+```
+OK, your last suggestion did not help me much, so please lets go one step back.
+Please provide me with a enhanced CSS file to support a responsive design and a modern look and feel.
+```
+
+--> Design is ok (but not ambitious)
 
 ## PDF-Conversion
 
