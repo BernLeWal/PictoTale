@@ -52,14 +52,17 @@ class ViewerView(MethodView):
         else:
             # Show the book pages and generate the pictures
             content = paragraphs[pos if pos < len(paragraphs) else 0]
+            print( f'Initial Paragraph: {content}\n')
+            content = content.replace('\n',' ').replace('\r',' ').replace('“', '"').replace('”', '"') #.replace('’', "'").replace('‘', "'" )
 
-            while not content.endswith('.'):
+            while not bool(re.search(r'\.\s*$', content)) and not bool(re.search(r'"\.\s*$', content)):
                 nextpos += 1
                 content += paragraphs[nextpos if nextpos < len(paragraphs) else 0]
             nextpos += 1 if nextpos < len(paragraphs) else 0
 
             content = content.replace('\n',' ').replace('\r',' ').replace('“', '"').replace('”', '"') #.replace('’', "'").replace('‘', "'" )
-            print( f'Content: {content}\n' )
+            print( f'Complete Paragraph: {content}\n' )
+
             sentences, descriptions = extract_sentences(content)
 
             # generate the picture
