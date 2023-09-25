@@ -15,6 +15,7 @@ class ViewerView(MethodView):
     def get(self, filename):
         ## retrieve the request/session parameters
         pos = request.args.get('pos', default=0, type=int)
+        posSentence = request.args.get('sentence', default=0, type=int)
         theme = request.args.get('theme', default='', type=str)
         if theme != '':
             session['THEME'] = theme
@@ -35,6 +36,8 @@ class ViewerView(MethodView):
         paragraphs = re.split(r'\n\s*\n', content)
 
         nextpos = pos
+        nextSentence = posSentence
+
         content = ""
         speechfile = ""
         if pos == 0:
@@ -63,22 +66,36 @@ class ViewerView(MethodView):
             content = content.replace('\n',' ').replace('\r',' ').replace('“', '"').replace('”', '"') #.replace('’', "'").replace('‘', "'" )
             print( f'Complete Paragraph: {content}\n' )
 
-            sentences, descriptions = extract_sentences(content)
+            sentences = extract_sentences(content)
+            print( f'Sentences: {sentences}\n' )
+
+            content = ""
+            descriptions = ""
+            speak = ""
+            while not len(descriptions) > 100 and nextSentence < len(sentences):
+                sentence, isSpeaking = sentences[nextSentence]
+                if isSpeaking:
+                    speak += f'{sentence} \n'                    
+                    content += f'"{sentence}" \n'
+                else:
+                    descriptions += f'{sentence} \n'
+                    content += f'{sentence} \n'
+                nextSentence += 1
+            print( f'Description: {descriptions}\n')
+            print( f'Speech: {speak}\n')
+            if nextSentence < len(sentences):
+                nextpos = pos
+            else:
+                nextSentence = 0
 
             # generate the picture
-            print( f'Description: {descriptions}\n' )
-            picturegenerator(self.app.config['STABLE_DIFFUSION_URL'], f"A ({theme}:{self.app.config['THEME_EMPHATIZE_RELATIVE']}) image of: " + descriptions, os.path.join(self.app.config['CACHE_FOLDER'], f'{filename}-{pos}.png'))
-            thumbnail = os.path.join(self.app.config['CACHE_FOLDER'], f'{filename}-{pos}.png')
+            picturegenerator(self.app.config['STABLE_DIFFUSION_URL'], f"A ({theme}:{self.app.config['THEME_EMPHATIZE_RELATIVE']}) image of: " + descriptions, os.path.join(self.app.config['CACHE_FOLDER'], f'{filename}-{pos}-{posSentence}.png'))
+            thumbnail = os.path.join(self.app.config['CACHE_FOLDER'], f'{filename}-{pos}-{posSentence}.png')
 
             # generate the speeches
-            speak = ""
-            for i, sentence in enumerate(sentences):
-                speak += f'{sentence} \n'
-            print( f'Speech: {speak}\n')
-
             if speak != "":
-                speechfile = os.path.join(self.app.config['CACHE_FOLDER'], f'{filename}-{pos}.mp3')
+                speechfile = os.path.join(self.app.config['CACHE_FOLDER'], f'{filename}-{pos}-{posSentence}.mp3')
                 create_audio(speak, speechfile)
 
 
-        return render_template('viewer.html', filename=filename, content=content, thumbnail=thumbnail, speechfile=speechfile, nextpos=nextpos, prevpos=pos-1, theme=theme)
+        return render_template('viewer.html', filename=filename, content=content, thumbnail=thumbnail, speechfile=speechfile, nextpos=nextpos, nextsentence=nextSentence, prevpos=pos-1, theme=theme)
